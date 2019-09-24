@@ -81,6 +81,7 @@ def find_best_split(features,label):
 
 	best_information_gain = 0
 
+	#Loops through the columns of the training data
 	for index in range(np.size(features,1)):
 
 		new_information_gain = information_gain(features, index, label)
@@ -90,6 +91,7 @@ def find_best_split(features,label):
 			best_index = index
 			best_information_gain = new_information_gain
 
+	#returns the index of the feature with the best information gain
 	return best_index
 
 
@@ -106,8 +108,6 @@ def DT_train_binary(X,Y,max_depth):
 
 		#finds the index of the best feature to split on and stores it in best_split_index
 		best_split_index = find_best_split(X, Y)
-
-		#print(best_split_index)
 
 
 		#Splits the training data for the left subtree where the selected feature is 0
@@ -184,7 +184,7 @@ def DT_test_binary(X,Y,DT):
 	#List that predicts the label of the sample
 	DT_prediction = []
 
-	#Loops through the sample data to get predicitions
+	#Loops through the sample data to get predictions
 	for sample in X:
 
 		#Reset DT_tree to the beginning of the tree, DT
@@ -206,7 +206,7 @@ def DT_test_binary(X,Y,DT):
 		#Append the prediction to the DT_prediction list
 		DT_prediction.append(DT_tree)
 
-	#Find the accuracy by counting the number of correct predicitions divided by the total number of samples
+	#Find the accuracy by counting the number of correct predictions divided by the total number of samples
 	count_correct = 0
 
 	for index in range(len(Y)):
@@ -235,7 +235,6 @@ def DT_train_binary_best(X_train, Y_train, X_val, Y_val):
 
 		old_accuracy = new_accuracy
 		new_accuracy = DT_test_binary(X_val,Y_val, DT_new)
-		print(new_accuracy)
 
 
 	return DT_old
@@ -343,8 +342,7 @@ def DT_train_real(X,Y,max_depth):
 		#finds the index of the best feature to split on and stores it in best_split_index
 		best_split_index, best_split_value = find_best_split_real(X, Y)
 
-		#print(best_split_index)
-
+		
 
 		#Splits the training data for the left subtree where the selected feature is < best_split_value
 		left_training_data = X[X[:,best_split_index] < best_split_value]
@@ -419,7 +417,7 @@ def DT_test_real(X,Y,DT):
 	#List that predicts the label of the sample
 	DT_prediction = []
 
-	#Loops through the sample data to get predicitions
+	#Loops through the sample data to get predictions
 	for sample in X:
 
 		#Reset DT_tree to the beginning of the tree, DT
@@ -441,7 +439,7 @@ def DT_test_real(X,Y,DT):
 		#Append the prediction to the DT_prediction list
 		DT_prediction.append(DT_tree)
 
-	#Find the accuracy by counting the number of correct predicitions divided by the total number of samples
+	#Find the accuracy by counting the number of correct predictions divided by the total number of samples
 	count_correct = 0
 
 	for index in range(len(Y)):
@@ -470,7 +468,6 @@ def DT_train_real_best(X_train,Y_train,X_val,Y_val):
 
 		old_accuracy = new_accuracy
 		new_accuracy = DT_test_real(X_val,Y_val, DT_new)
-		print(new_accuracy)
 
 
 	return DT_old
@@ -492,25 +489,5 @@ def DT_make_prediction_real(x,DT):
 
 	#Append the prediction to the DT_prediction list
 	return DT
-
-'''
-X = np.array ([[4.8,3.4,1.9,0.2], [5.4,3.4,2.5,0.4], [7,3.2,4.7,1.4], [6.4,3.2,4.7,1.5]])
-Y = np.array ([[1], [1], [0], [0]]) 
-#max_depth = 3
-#DT = DT_train_binary (X,Y, max_depth)
-#testacc = DT_test_binary(X,Y,DT)
-
-Xval = [[0,0], [0,1], [1,0], [1,1]]
-Yval = [[0], [1], [0], [1]]
-
-X_test = [[0,0], [0,1], [1,0], [1,1]]
-Y_test = [[1], [1], [0], [1]]
-
-tree = DT_train_real_best(X, Y, X, Y)
-
-print("tree: ",tree)
-
-print(DT_make_prediction_real([6.4,1,1,1],tree))
-'''
 
 
