@@ -13,6 +13,8 @@ Y_val_1 = np.array([[0], [1], [0], [1]])
 X_test_1 = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
 Y_test_1 = np.array([[1], [1], [0], [1]])
 
+
+
 # Training Set 2
 X_2 = np.array([[0, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 0, 1, 1], [1, 1, 0, 1], [1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 0, 1], [0, 1, 0, 0]])
 Y_2 = np.array([[0], [1], [0], [0], [1], [0], [1], [1], [1]])
@@ -22,6 +24,14 @@ Y_val_2 = np.array([[0], [0], [1], [0], [1], [1]])
 # Test Set 2
 X_test_2 = np.array([[0, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 0, 1, 1], [1, 1, 0, 1], [1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 0, 1], [0, 1, 0, 0]])
 Y_test_2 = np.array([[1], [1], [0], [0], [1], [0], [1], [1], [1]])
+
+tree = dt.DT_train_binary(X_2,Y_2,-1)
+tree_1 = dt.DT_train_binary_best(X_2,Y_2,X_val_2,Y_val_2)
+
+print(dt.DT_test_binary(X_test_2,Y_test_2,tree))
+print(dt.DT_test_binary(X_test_2,Y_test_2,tree_1))
+
+print(tree_1)
 
 # Inviting friends over for dinner problem
 X_invite_friends = np.array([[1, 1, 1, 0, 1, 1, 0], [0, 0, 1, 1, 0, 1, 1], [0, 1, 0, 0, 1, 0, 0], [1, 1, 0, 1, 0, 0, 1], [1, 0, 1, 0, 1, 1, 1], [1, 1, 0, 1, 1, 0, 1], [1, 1, 0, 0, 1, 1, 0], [0, 0, 0, 1, 0, 1, 1]])
