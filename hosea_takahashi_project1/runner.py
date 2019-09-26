@@ -37,6 +37,7 @@ Y_val_2 = np.array([[0], [0], [1], [0], [1], [1]])
 X_test_2 = np.array([[0, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 0, 1, 1], [1, 1, 0, 1], [1, 1, 0, 0], [1, 0, 0, 1], [0, 1, 0, 1], [0, 1, 0, 0]])
 Y_test_2 = np.array([[1], [1], [0], [0], [1], [0], [1], [1], [1]])
 
+
 tree = dt.DT_train_binary(X_2,Y_2,max_depth)
 test = dt.DT_test_binary(X_test_2,Y_test_2,tree)
 
@@ -46,7 +47,7 @@ test_best = dt.DT_test_binary(X_test_2,Y_test_2,tree_best)
 print("\nTraining Set 2:")
 print("Binary Test (max_depth = 2): ",test)
 print("Binary Test (Best Depth): ",test_best)
-print("Decision Tree (max_depth = 2): ",tree)
+print("Decision Tree (max_depth = 2): ",tree[0])
 print("Decision Tree (Best Depth): ",tree_best)
 
 

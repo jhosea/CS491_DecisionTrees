@@ -194,27 +194,32 @@ def DT_test_binary(X,Y,DT):
 	#Loops through the sample data to get predictions
 	for sample in X:
 
-		#Reset DT_tree to the beginning of the tree, DT
-		DT_tree = DT
-
-		#While the length of the tree list is 3 then there is no decision to be made and we will continue down the tree
-		while len(DT_tree) == 3:
-
-			#if the feature is 0, go to the left subtree
-			if sample[DT_tree[0]] == 0:
-
-				DT_tree = DT_tree[1]
-
-			#else go to the right subtree
-			else:
-
-				DT_tree = DT_tree[2]
-
-		#Append the prediction to the DT_prediction list
-		DT_prediction.append(DT_tree)
+		DT_prediction.append(DT_make_prediction(sample,DT))
+		'''#Reset DT_tree to the beginning of the tree, DT
+								DT_tree = DT
+								x_modify = X
+						
+								#While the length of the tree list is 3 then there is no decision to be made and we will continue down the tree
+								while len(DT_tree) == 3:
+						
+									#if the feature is 0, go to the left subtree
+									if sample[DT_tree[0]] == 0:
+						
+										DT_tree = DT_tree[1]
+										x_modify = np.delete(x_modify, DT_tree[0], 1) 
+						
+									#else go to the right subtree
+									else:
+						
+										DT_tree = DT_tree[2]
+										x_modify = np.delete(x_modify, DT_tree[0], 1) 
+						
+								#Append the prediction to the DT_prediction list
+								DT_prediction.append(DT_tree)'''
 
 	#Find the accuracy by counting the number of correct predictions divided by the total number of samples
 	count_correct = 0
+
 
 	for index in range(len(Y)):
 
@@ -252,13 +257,16 @@ def DT_make_prediction(x,DT):
 
 		#if the feature is 0, go to the left subtree
 		if x[DT[0]] == 0:
-
+			x = np.delete(x, DT[0], 0) 
 			DT = DT[1]
+
 
 		#else go to the right subtree
 		else:
 
+			x = np.delete(x, DT[0], 0) 
 			DT = DT[2]
+			
 
 	#Return the prediction
 	return DT[0]
