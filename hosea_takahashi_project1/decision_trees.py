@@ -261,7 +261,7 @@ def DT_make_prediction(x,DT):
 			DT = DT[2]
 
 	#Return the prediction
-	return DT
+	return DT[0]
 
 
 
@@ -349,7 +349,6 @@ def DT_train_real(X,Y,max_depth):
 		#finds the index of the best feature to split on and stores it in best_split_index
 		best_split_index, best_split_value = find_best_split_real(X, Y)
 
-		
 
 		#Splits the training data for the left subtree where the selected feature is < best_split_value
 		left_training_data = X[X[:,best_split_index] < best_split_value]
@@ -371,7 +370,6 @@ def DT_train_real(X,Y,max_depth):
 		#right_training_data = np.delete(right_training_data, best_split_index, 1)
 
 
-
 		#if the entropy is 0 then there is no need to continue splitting and we can make a decision
 		if not entropy(left_labels) == 0:
 
@@ -385,7 +383,6 @@ def DT_train_real(X,Y,max_depth):
 			else:
 				#Makes a decision with the first element of left_labels
 				left_subtree = left_labels[0]
-
 
 		#if the entropy is 0 then there is no need to continue splitting and we can make a decision
 		if not entropy(right_labels) == 0:	
@@ -502,6 +499,6 @@ def DT_make_prediction_real(x,DT):
 			DT = DT[2]
 
 	#Append the prediction to the DT_prediction list
-	return DT
+	return DT[0]
 
 
